@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressive Animation</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: white;
+            overflow: hidden;
+        }
+
+        .message {
+            position: absolute;
+            top: 36px;
+            font-size: 6vw; /* Responsive font size */
+            color: black;
+            text-align: center;
+            width: 100%;
+        }
+
+        h2 {
+            position: absolute;
+            top: 176px;
+
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 4vw; /* Responsive button size */
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+    
+
+        .btn-left {
+            background-color: lightblue;
+            color: black;
+            border: 1.6px solid black;
+            border-radius: 20px;
+            font-size: larger;
+        }
+
+        .btn-right {
+            background-color: white;
+            color: black;
+            border: 1.6px solid black;
+            border-radius: 20px;
+            font-size: larger;
+        }
+
+        .animation-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgb(63, 189, 231), white);
+            clip-path: circle(0% at 50% 50%);
+            transition: clip-path 0.8s ease-in-out; /* Faster transition */
+            z-index: 10;
+        }
+
+        .animation-overlay.active {
+           
+            clip-path: circle(150% at 50% 50%);
+        }
+
+        .bubbles {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            z-index: 0;
+            pointer-events: none; /* Make sure the bubbles don't interfere with clicking the buttons */
+        }
+
+        .bubble {
+            fill:  rgb(63, 189, 231);
+            opacity: 0.6;
+            animation: float 10s ease-in-out infinite;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="message">  <strong> <u>  OSL </u> </strong> </div>
+    <div class="container">
+        <h2>Was trifft auf sie zu ?</h2>
+        <button class="btn btn-left" onclick="triggerAnimation('newpage.html')">  <strong> Influencer </strong>  </button>
+        <button class="btn btn-right" onclick="triggerAnimation('anotherpage.html')">  <strong> Unternehmen </strong> </button>
+    </div>
+    <div class="animation-overlay" id="animationOverlay"></div>
+  
+    <svg class="bubbles" xmlns="http://www.w3.org/2000/svg">
+        <circle class="bubble" cx="10%" cy="90%" r="20" />
+        <circle class="bubble" cx="25%" cy="85%" r="15" />
+        <circle class="bubble" cx="40%" cy="92%" r="10" />
+        <circle class="bubble" cx="55%" cy="88%" r="25" />
+        <circle class="bubble" cx="70%" cy="95%" r="18" />
+        <circle class="bubble" cx="85%" cy="90%" r="12" />
+    </svg>
+
+    <script>
+        function triggerAnimation(targetUrl) {
+            const overlay = document.getElementById('animationOverlay');
+            overlay.classList.add('active');
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 500);  // Wait for 0.5 seconds to let the animation play before redirecting
+        }
+    </script>
+</body>
+</html>
+
+
+
+
