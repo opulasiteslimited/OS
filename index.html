@@ -49,15 +49,18 @@
             margin: 10px;
         }
 
+
     
 
         .btn-left {
-            background-color: lightblue;
+            background-color: rgb(72, 192, 232);
             color: black;
             border: 1.6px solid black;
             border-radius: 20px;
             font-size: larger;
         }
+
+        
 
         .btn-right {
             background-color: white;
@@ -66,6 +69,50 @@
             border-radius: 20px;
             font-size: larger;
         }
+
+       
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn:active {
+            animation: clickAnimation 0.2s ease;
+        }
+
+        @keyframes clickAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.95);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.3s ease;
+            pointer-events: none;
+        }
+
+        .btn:hover::before {
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+
 
         .animation-overlay {
             position: absolute;
@@ -89,15 +136,30 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 50%;
+            height: 30%;
             z-index: 0;
-            pointer-events: none; /* Make sure the bubbles don't interfere with clicking the buttons */
+            pointer-events: none;
         }
 
         .bubble {
-            fill:  rgb(63, 189, 231);
+            fill: rgb(63, 189, 231);
             opacity: 0.6;
-            animation: float 10s ease-in-out infinite;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-20px);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 0.6;
+            }
         }
 
     </style>
@@ -105,9 +167,9 @@
 <body>
     <div class="message">  <strong> <u>  OSL </u> </strong> </div>
     <div class="container">
-        <h2>Was trifft auf sie zu ?</h2>
+        <h2> Was trifft auf sie zu ? </h2>
         <button class="btn btn-left" onclick="triggerAnimation('newpage.html')">  <strong> Influencer </strong>  </button>
-        <button class="btn btn-right" onclick="triggerAnimation('anotherpage.html')">  <strong> Unternehmen </strong> </button>
+        <button class="btn btn-right" onclick="triggerAnimation('unternehmen1.html')">  <strong> Unternehmen </strong> </button>
     </div>
     <div class="animation-overlay" id="animationOverlay"></div>
   
