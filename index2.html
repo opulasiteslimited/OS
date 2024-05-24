@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auswahlseite</title>
+    <title>Impressive Animation</title>
     <style>
         body, html {
             margin: 0;
@@ -16,36 +16,64 @@
             font-family: Arial, sans-serif;
             background-color: white;
             overflow: hidden;
-            position: relative;
         }
 
-        h4 {
-            margin-top: 20px;
+        .message {
+            position: absolute;
+            top: 36px;
+            font-size: 6vw; /* Responsive font size */
             color: black;
-            font-size: 25px;
             text-align: center;
+            width: 100%;
+        }
+
+        h2 {
+            position: absolute;
+            top: 176px;
+            font-size: 26px;
+
         }
 
         .container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
 
         .btn {
-            position: relative;
-            padding: 12px;
-            padding-left: 6px;
-            padding-right: 6px;
-            font-size: 1em;
+            padding: 10px 20px;
+            font-size: 4vw; /* Responsive button size */
             cursor: pointer;
-            border: 1.5px solid black;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+
+    
+
+        .btn-left {
+            background-color: rgb(88, 195, 231);
+            color: black;
+            border: 1.6px solid black;
             border-radius: 20px;
             font-size: larger;
+        }
+
+        
+
+        .btn-right {
             background-color: white;
-            text-align: center;
-            transition: background-color 0.3s ease;
+            color: black;
+            border: 1.6px solid black;
+            border-radius: 20px;
+            font-size: larger;
+        }
+
+       
+        .btn:hover {
+            transform: scale(1.05);
         }
 
         .btn:hover {
@@ -68,46 +96,40 @@
             }
         }
 
-        .btn.selected {
-            background-color: lightgray;
-        }
 
-        .checkmark {
+        .btn::before {
+            content: '';
             position: absolute;
-            top: 5px;
-            left: 5px;
-            width: 20px;
-            height: 20px;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            background-color: rgb(63, 189, 231);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 1em;
-            visibility: hidden;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.3s ease;
+            pointer-events: none;
         }
 
-        .btn.selected .checkmark {
-            visibility: visible;
+        .btn:hover::before {
+            transform: translate(-50%, -50%) scale(1.5);
         }
 
-        .btn-weiter {
-            margin-top: 45px;
-            padding: 10px;
-            text-align: center;
-            border-radius: 12px;
-            color: black;
-            border: 1.6px solid black;
-            font-size: larger;
-            background-color: rgb(88, 195, 231);
-            cursor: not-allowed;
-            opacity: 0.5;
+
+        .animation-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:  rgb(63, 189, 231) ;
+            clip-path: circle(0% at 50% 50%);
+            transition: clip-path 0.6s ease-in-out; /* Faster transition */
+            z-index: 10;
         }
 
-        .btn-weiter.enabled {
-            cursor: pointer;
-            opacity: 1;
+        .animation-overlay.active {
+           
+            clip-path: circle(150% at 50% 50%);
         }
 
         .bubbles {
@@ -123,7 +145,7 @@
         .bubble {
             fill: rgb(63, 189, 231);
             opacity: 0.6;
-            animation: float 6s ease-in-out infinite;
+            animation: float 4s ease-in-out infinite;
         }
 
         @keyframes float {
@@ -228,43 +250,17 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .container {
-                gap: 5px;
-            }
-
-            .btn {
-                padding-left: 4px;
-                padding-right: 4px;
-            }
-        }
     </style>
 </head>
 <body>
-    <div id="content">
-        <h4>In welchem Themenbereich liegt das Produkt das Sie vermarkten wollen?</h4>
-        <div class="container">
-            <div class="btn" onclick="toggleSelection(this)"><strong>Fitness</strong><div class="checkmark">✔</div></div>
-            <div class="btn" onclick="toggleSelection(this)"><strong>Beauty</strong><div class="checkmark">✔</div></div>
-            <div class="btn" onclick="toggleSelection(this)"><strong>Mode</strong><div class="checkmark">✔</div></div>
-            <div class="btn" onclick="toggleSelection(this)"><strong>Technik</strong><div class="checkmark">✔</div></div>
-            <div class="btn" onclick="toggleSelection(this)"><strong>Dienstleistung</strong><div class="checkmark">✔</div></div>
-            <div class="btn" onclick="toggleSelection(this)"><strong>Medien</strong><div class="checkmark">✔</div></div>
-            <div class="btn" onclick="toggleSelection(this)"><strong>Personen</strong><div class="checkmark">✔</div></div>
-            <div class="btn" onclick="toggleSelection(this)"><strong>Filme/Bücher</strong><div class="checkmark">✔</div></div>
-        </div>
+    <div class="message">  <strong> <u>  OSL </u> </strong> </div>
+    <div class="container">
+        <h2> Was trifft auf sie zu ? </h2>
+        <button class="btn btn-left" onclick="triggerAnimation('newpage.html')">  <strong> Influencer </strong>  </button>
+        <button class="btn btn-right" onclick="triggerAnimation('unternehmen1.html')">  <strong> Unternehmen </strong> </button>
     </div>
-
-    <button id="btn-weiter" class="btn btn-weiter" disabled><strong>weiter</strong></button>
-
-    <div id="circle" class="circle">
-        <div class="loading-animation">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-    </div>
-
+    <div class="animation-overlay" id="animationOverlay"></div>
+  
     <svg class="bubbles" xmlns="http://www.w3.org/2000/svg">
         <circle class="bubble" cx="10%" cy="90%" r="20" />
         <circle class="bubble" cx="25%" cy="85%" r="15" />
@@ -275,20 +271,9 @@
     </svg>
 
     <script>
-        function toggleSelection(element) {
-            element.classList.toggle('selected');
-            const selectedButtons = document.querySelectorAll('.btn.selected');
-            const btnWeiter = document.getElementById('btn-weiter');
-            if (selectedButtons.length > 0) {
-                btnWeiter.disabled = false;
-                btnWeiter.classList.add('enabled');
-            } else {
-                btnWeiter.disabled = true;
-                btnWeiter.classList.remove('enabled');
-            }
-        }
+        
 
-        document.getElementById('btn-weiter').addEventListener('click', function() {
+        document.getElementById('btn').addEventListener('click', function() {
             if (!this.disabled) {
                 const content = document.getElementById('content');
                 const circle = document.getElementById('circle');
@@ -296,10 +281,20 @@
                 circle.style.display = 'block';
                 circle.style.animation = 'expandCircle 1s forwards';
                 circle.addEventListener('animationend', function() {
-                    window.location.href = 'unternehmen2.html';
+                    window.location.href = targetUrl;
                 });
             }
         });
+    </script>
+
+    <script>
+        function triggerAnimation(targetUrl) {
+            const overlay = document.getElementById('animationOverlay');
+            overlay.classList.add('active');
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 500);  // Wait for 0.5 seconds to let the animation play before redirecting
+        }
     </script>
 </body>
 </html>

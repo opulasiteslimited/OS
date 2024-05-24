@@ -53,6 +53,11 @@
             font-style: italic;
             color: #999;
         }
+ 
+
+h4 {
+    font-size: larger;
+}
 
         .form-group textarea::placeholder {
             font-family: 'Arial', sans-serif;
@@ -219,6 +224,10 @@
             color: rgb(63, 189, 231);
         }
 
+        .stern {
+            color: red;
+        }
+
         @keyframes expandCircle {
             0% {
                 width: 0;
@@ -283,11 +292,6 @@
                 transform: scale(1.5);
             }
         }
-
-        .stern {
-            color: red;
-        }
-
     </style>
 </head>
 <body>
@@ -295,7 +299,7 @@
         <h4>Bitte füllen Sie das Formular aus:</h4>
         <form id="social-media-form">
             <div class="form-group">
-                <label for="platform">Wählen Sie Ihre Plattform:</label>
+                <label for="platform">Wählen Sie die Plattform auf der das Influencer-Marketing statt finden soll:</label>
                 <select id="platform" name="platform">
                     <option value="instagram">Instagram</option>
                     <option value="facebook">Facebook</option>
@@ -304,16 +308,16 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="accountName"> <a class="stern" >*</a> Account Name:</label>
-                <input type="text" id="accountName" name="accountName" placeholder="@accountname">
+                <label for="accountName"><a class="stern" >*</a>Vor und Nachname:</label>
+                <input type="text" id="accountName" name="Name" placeholder="Name">
             </div>
             <div class="form-group">
-                <label for="email"> <a class="stern" >*</a> Email Adresse:</label>
+                <label for="email"><a class="stern" >*</a>Email Adresse:</label>
                 <input type="email" id="email" name="email" placeholder="Email">
             </div>
             <div class="form-group">
-                <label for="message">Anliegen oder Wunsch:</label>
-                <textarea id="message" name="message" placeholder="Text..."></textarea>
+                <label for="message"><a class="stern" >*</a>Beschreiben sie ihr Produkt:</label>
+                <textarea id="message" name="message" placeholder="Beschreibung..."></textarea>
             </div>
             <div class="form-group">
                 <label class="checkbox-label">
@@ -323,7 +327,7 @@
                 </label>
             </div>
             <div class="form-group">
-                <button  class="btn-submit" type="button" id="submitBtn"><strong>Bestätigen</strong></button>
+                <button class="btn-submit" type="button" id="submitBtn"><strong>Bestätigen</strong></button>
             </div>
             <div class="error-message" id="errorMessage">Bitte füllen Sie alle erforderlichen Felder aus und akzeptieren Sie die AGBs.</div>
         </form>
@@ -396,14 +400,9 @@
                     submitBtn.classList.remove('enabled');
                     submitBtn.style.cursor = 'not-allowed';
                     submitBtn.disabled = true;
-
                 }
             });
         });
     </script>
 </body>
 </html>
-
-
-
-
