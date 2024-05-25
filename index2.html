@@ -31,7 +31,6 @@
             position: absolute;
             top: 176px;
             font-size: 26px;
-
         }
 
         .container {
@@ -50,9 +49,6 @@
             margin: 10px;
         }
 
-
-    
-
         .btn-left {
             background-color: rgb(88, 195, 231);
             color: black;
@@ -61,19 +57,12 @@
             font-size: larger;
         }
 
-        
-
         .btn-right {
             background-color: white;
             color: black;
             border: 1.6px solid black;
             border-radius: 20px;
             font-size: larger;
-        }
-
-       
-        .btn:hover {
-            transform: scale(1.05);
         }
 
         .btn:hover {
@@ -96,7 +85,6 @@
             }
         }
 
-
         .btn::before {
             content: '';
             position: absolute;
@@ -114,21 +102,19 @@
             transform: translate(-50%, -50%) scale(1.5);
         }
 
-
         .animation-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background:  rgb(63, 189, 231) ;
+            background: rgb(63, 189, 231);
             clip-path: circle(0% at 50% 50%);
             transition: clip-path 0.6s ease-in-out; /* Faster transition */
             z-index: 10;
         }
 
         .animation-overlay.active {
-           
             clip-path: circle(150% at 50% 50%);
         }
 
@@ -169,7 +155,7 @@
             left: 50%;
             width: 100px;
             height: 100px;
-            background-color: rgb(63, 189, 231);
+            background-color: rgb(253, 254, 254);
             border-radius: 50%;
             transform: translateX(-50%);
             display: none;
@@ -181,10 +167,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            display: flex;
+            display: none;
             justify-content: center;
             align-items: center;
             gap: 5px;
+            z-index: 11; /* Ensure it's above the overlay */
         }
 
         .loading-animation .dot {
@@ -250,14 +237,44 @@
             }
         }
 
+        /* Ladeanimation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loading-circle {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 4px solid #0e0e0e; /* Dunkelblau */
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
     </style>
 </head>
 <body>
-    <div class="message">  <strong> <u>  OSL </u> </strong> </div>
+    <div class="message"> <strong> <u> OSL </u> </strong> </div>
     <div class="container">
         <h2> Was trifft auf sie zu ? </h2>
-        <button class="btn btn-left" onclick="triggerAnimation('newpage.html')">  <strong> Influencer </strong>  </button>
-        <button class="btn btn-right" onclick="triggerAnimation('unternehmen1.html')">  <strong> Unternehmen </strong> </button>
+        <button class="btn btn-left" onclick="triggerAnimation('newpage.html')"> <strong> Influencer </strong> </button>
+        <button class="btn btn-right" onclick="triggerAnimation('unternehmen1.html')"> <strong> Unternehmen </strong> </button>
     </div>
     <div class="animation-overlay" id="animationOverlay"></div>
   
@@ -270,10 +287,32 @@
         <circle class="bubble" cx="85%" cy="90%" r="12" />
     </svg>
 
-    <script>
-        
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-circle"></div>
+        <div class="loading-circle"></div>
+        <div class="loading-circle"></div>
+    </div>
 
-        document.getElementById('btn').addEventListener('click', function() {
+    <div class="loading-animation" id="loadingAnimation">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+
+    <script>
+        function triggerAnimation(targetUrl) {
+            const overlay = document.getElementById('animationOverlay');
+            const loadingAnimation = document.getElementById('loadingAnimation');
+
+            overlay.classList.add('active');
+            loadingAnimation.style.display = 'flex';
+
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 500);  // Wait for 0.5 seconds to let the animation play before redirecting
+        }
+
+        document.getElementById('btn-left').addEventListener('click', function() {
             if (!this.disabled) {
                 const content = document.getElementById('content');
                 const circle = document.getElementById('circle');
@@ -281,20 +320,33 @@
                 circle.style.display = 'block';
                 circle.style.animation = 'expandCircle 1s forwards';
                 circle.addEventListener('animationend', function() {
-                    window.location.href = targetUrl;
+                    window.location.href = 'newpage.html';
                 });
             }
         });
-    </script>
 
-    <script>
-        function triggerAnimation(targetUrl) {
-            const overlay = document.getElementById('animationOverlay');
-            overlay.classList.add('active');
-            setTimeout(() => {
+        document.getElementById('btn-right').addEventListener('click', function() {
+            if (!this.disabled) {
+                const content = document.getElementById('content');
+                const circle = document.getElementById('circle');
+                content.classList.add('fade-out');
+                circle.style.display = 'block';
+                circle.style.animation = 'expandCircle 1s forwards';
+                circle.addEventListener('animationend', function() {
+                    window.location.href = 'unternehmen1.html';
+                });
+            }
+        });
+
+        document.getElementById('btn').addEventListener('click', function() {
+            // Zeige die Ladeanimation
+            document.getElementById('loadingOverlay').style.display = 'flex';
+
+            // Navigiere zur Index2-Seite nach einer kurzen Verzögerung (hier 0.5 Sekunden)
+            setTimeout(function() {
                 window.location.href = targetUrl;
-            }, 500);  // Wait for 0.5 seconds to let the animation play before redirecting
-        }
+            }, 500);
+        });
     </script>
 </body>
 </html>

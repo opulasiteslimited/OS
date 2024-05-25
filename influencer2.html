@@ -373,6 +373,11 @@
                     circleAnimation.style.animation = 'expandCircle 1s forwards';
                     checkmark.style.animation = 'showCheckmark 1.6s forwards';
                     checkmark.style.display = 'block';  // Ensure checkmark is displayed for animation
+
+                    // Wait for the checkmark animation to finish before redirecting
+                    setTimeout(() => {
+                        window.location.href = 'profil.html';
+                    }, 2000); // 2 seconds delay after checkmark animation
                 }, 1000); // 1 second delay for loading animation
             } else {
                 errorMessage.style.display = 'block';
@@ -396,7 +401,6 @@
                     submitBtn.classList.remove('enabled');
                     submitBtn.style.cursor = 'not-allowed';
                     submitBtn.disabled = true;
-
                 }
             });
         });
