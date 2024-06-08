@@ -8,39 +8,35 @@
         body {
             margin: 0;
             padding: 0;
-            min-height: 100vh;
+            height: 100%;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             background-color: #f0f0f0; /* Hellblau */
-            overflow-x: hidden;
+            overflow: hidden;
+            flex-direction: column;
         }
 
         header {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #f0f0f0;
-            position: fixed;
-            top: 0;
-            z-index: 10;
+           
+            border-bottom: 2px solid #000000;
+        
         }
+        
 
         .container {
             text-align: center;
-            margin-top: 160px; /* Platz für den Header und Abstand zur Überschrift */
-            padding: 20px;
-            flex-grow: 1;
-            width: 100%;
+            position: relative;
+            margin-top: 145px;
         }
 
         h5 {
             font-family: sans-serif;
             text-align: left;
             margin: 10px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
             font-size: 1.5rem;
         }
 
@@ -52,6 +48,7 @@
         }
 
         .btn-start {
+            
             padding: 10px 20px;
             background-color: #0e0e0e; /* Dunkelblau */
             color: white;
@@ -62,6 +59,7 @@
             cursor: pointer;
             text-align: center;
             margin-top: 30px;
+            
         }
 
         .btn-start:hover {
@@ -135,11 +133,117 @@
 
         /* Menü */
         .menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            top: 25px;
+        }
+
+        .menu-line {
+            width: 25px;
+            height: 3px;
+            background-color: #0e0e0e; /* Dunkelblau */
+            margin: 4px 0;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            
+        }
+
+        .menu-line:hover {
+            background-color: #1c8cd7; /* Hellere Variante von Dunkelblau */
+        }
+
+        /* Werbebereich */
+        .ad-container {
+            position: absolute;
+            bottom: 11px;
+            width: 90%;
+            height: 100px; /* Höhe des Werbebereichs */
+            background-color: #ccc; /* Hellgrau als Platzhalter für Werbung */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px; /* Abstände zum Rand */
+            border-radius: 10px;
+        }
+
+        .txt{
+            font-size: 16px;
+            margin-top: 24px;
+            text-align: center;
+            margin-left: 15px;
+            margin-right: 15px;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <header>
+    <h5> <u>OSL</u> </h5>
+    <div class="menu" id="menu">
+        <div class="menu-line"></div>
+        <div class="menu-line"></div>
+        <div class="menu-line"></div>
+    </div>
+    </header>
+    <div class="container"></div>
+        <h1>Ihr Bindeglied zwischen Influencer und Unternehmen</h1>
+        <a href="#" class="btn-start" id="startBtn">Starten</a>
+        
+        
+
+        <!-- Blaue Bläschen -->
+        <div class="bubble" style="top: 13%; left: 10%;"></div>
+        <div class="bubble" style="top: 15%; left: 70%;"></div>
+        <div class="bubble" style="top: 20%; left: 30%;"></div>
+        <div class="bubble" style="top: 67%; left: 80%;"></div>
+        <div class="bubble" style="top: 71%; left: 20%;"></div>
+</div>
+        <!-- Menü -->
+    
+   
+
+
+    <!-- Werbebereich -->
+    <div class="ad-container">
+        <span>Werbung</span>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-circle"></div>
+        <div class="loading-circle"></div>
+        <div class="loading-circle"></div>
+    </div>
+
+    <script>
+        document.getElementById('startBtn').addEventListener('click', function() {
+            // Zeige die Ladeanimation
+            document.getElementById('loadingOverlay').style.display = 'flex';
+
+            // Navigiere zur Index2-Seite nach einer kurzen Verzögerung (hier 0.5 Sekunden)
+            setTimeout(function() {
+                window.location.href = 'index2.html';
+            }, 500);
+
+        });
+
+        </script>
+
+
+
+
+
+
+<style>
+   .menu {
             cursor: pointer;
         }
 
         .menu-line {
-            margin-right: 18px;
             width: 25px;
             height: 3px;
             background-color: #0e0e0e; /* Dunkelblau */
@@ -181,105 +285,20 @@
 
         .side-menu a:hover {
             background-color: #1c8cd7; /* Hellere Variante von Dunkelblau */
-        }
+        }  
+</style>
 
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 36px;
-            margin-left: 50px;
-            color: white;
-            cursor: pointer;
-        }
 
-        /* Werbebereich */
-        .ad-container {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 100px; /* Höhe des Werbebereichs */
-            background-color: #ccc; /* Hellgrau als Platzhalter für Werbung */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 10px;
-            z-index: 10;
-        }
 
-        .txt {
-            font-size: 16px;
-            margin-top: 24px;
-            text-align: center;
-            margin-left: 15px;
-            margin-right: 15px;
-        }
-
-        @media (max-width: 600px) {
-            body {
-                justify-content: flex-start;
-            }
-
-            .container {
-                margin-top: 100px;
-                padding: 10px;
-            }
-
-            .ad-container {
-                height: 80px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h5> <u>OSL</u> </h5>
-        <div class="menu" id="menu">
-            <div class="menu-line"></div>
-            <div class="menu-line"></div>
-            <div class="menu-line"></div>
-        </div>
-    </header>
-    <div class="container">
-        <h1>Ihr Bindeglied zwischen Influencer und Unternehmen</h1>
-        <a href="#" class="btn-start" id="startBtn">Starten</a>
-    </div>
-
-    <!-- Blaue Bläschen -->
-    <div class="bubble" style="top: 13%; left: 10%;"></div>
-    <div class="bubble" style="top: 15%; left: 70%;"></div>
-    <div class="bubble" style="top: 20%; left: 30%;"></div>
-    <div class="bubble" style="top: 67%; left: 80%;"></div>
-    <div class="bubble" style="top: 71%; left: 20%;"></div>
-
-    <!-- Side-Menü -->
-    <div id="sideMenu" class="side-menu">
-        <span class="close-btn" id="closeBtn">&times;</span>
-        <a class="menuBtn" href="#" data-target="about.html">Über uns</a>
-        <a class="menuBtn" href="#" data-target="services.html">Was wir machen</a>
-        <a class="menuBtn" href="#" data-target="contact.html">Kontakt</a>
-        <a class="menuBtn" href="#" data-target="index.html">Loslegen</a>
-    </div>
-
-    <!-- Werbebereich -->
-    <div class="ad-container">
-        <span>Werbung</span>
-    </div>
-
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-circle"></div>
-    </div>
-
-    <script>
-        document.getElementById('startBtn').addEventListener('click', function() {
-            // Zeige die Ladeanimation
-            document.getElementById('loadingOverlay').style.display = 'flex';
-
-            // Navigiere zur Index2-Seite nach einer kurzen Verzögerung (hier 0.5 Sekunden)
-            setTimeout(function() {
-                window.location.href = 'index2.html';
-            }, 500);
-        });
+ <!-- Side-Menü -->
+ <div id="sideMenu" class="side-menu">
+    <span class="close-btn" id="closeBtn">&times;</span>
+    <a class="menuBtn" href="#" data-target="about.html">Über uns</a>
+    <a class="menuBtn" href="#" data-target="services.html">Was wir machen</a>
+    <a class="menuBtn" href="#" data-target="contact.html">Kontakt</a>
+    <a class="menuBtn" href="#" data-target="index.html">Loslegen</a>
+</div>
+        <script>
 
         document.getElementById('menu').addEventListener('click', function() {
             document.getElementById('sideMenu').style.width = '250px';
@@ -304,9 +323,16 @@
                 // Navigiere zur Zielseite nach einer kurzen Verzögerung (hier 0.5 Sekunden)
                 setTimeout(function() {
                     window.location.href = target;
-                }, 500);
+                }, 400);
             });
-        });
+         });
+
+
+
+
+
+
+
     </script>
 </body>
 </html>
