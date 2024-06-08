@@ -8,29 +8,33 @@
         body {
             margin: 0;
             padding: 0;
-            height: 100%;
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
             background-color: #f0f0f0; /* Hellblau */
-            overflow: hidden;
-            flex-direction: column;
-            overflow-x: hidden; /* Prevent horizontal scrolling */        
-
+            overflow-x: hidden;
         }
-        
+
         header {
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
+            background-color: #f0f0f0;
+            position: fixed;
+            top: 0;
+            z-index: 10;
         }
 
         .container {
             text-align: center;
-            position: relative;
-            margin-top: 145px;
+            margin-top: 160px; /* Platz für den Header und Abstand zur Überschrift */
+            padding: 20px;
+            flex-grow: 1;
+            width: 100%;
         }
 
         h5 {
@@ -44,8 +48,6 @@
             font-size: 2rem;
             color: #0e0e0e; /* Dunkelblau */
             margin-top: 10px;
-            margin-left: 15px;
-            margin-bottom: 20px;
             text-align: center;
         }
 
@@ -134,16 +136,14 @@
         /* Menü */
         .menu {
             cursor: pointer;
-            top: 10px;
-            right: 10px;
         }
 
         .menu-line {
+            margin-right: 18px;
             width: 25px;
             height: 3px;
             background-color: #0e0e0e; /* Dunkelblau */
             margin: 4px 0;
-            margin-right: 18px;
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
@@ -195,17 +195,16 @@
 
         /* Werbebereich */
         .ad-container {
-            position: absolute;
-            bottom: 0px;
+            position: fixed;
+            bottom: 0;
             width: 100%;
-            height: 70px; /* Höhe des Werbebereichs */
+            height: 100px; /* Höhe des Werbebereichs */
             background-color: #ccc; /* Hellgrau als Platzhalter für Werbung */
             display: flex;
-            text-algin: bottom;
             justify-content: center;
             align-items: center;
-            margin-bottom: 0px; /* Abstände zum Rand */
             border-radius: 10px;
+            z-index: 10;
         }
 
         .txt {
@@ -214,6 +213,21 @@
             text-align: center;
             margin-left: 15px;
             margin-right: 15px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                justify-content: flex-start;
+            }
+
+            .container {
+                margin-top: 100px;
+                padding: 10px;
+            }
+
+            .ad-container {
+                height: 80px;
+            }
         }
     </style>
 </head>
@@ -253,8 +267,6 @@
     </div>
 
     <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-circle"></div>
-        <div class="loading-circle"></div>
         <div class="loading-circle"></div>
     </div>
 
