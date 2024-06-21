@@ -13,18 +13,19 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            background-color: #f0f0f0; /* Hellblau */
+            background-color: white; /* Hellblau */
             overflow-x: hidden;
+            
         }
 
         header {
-            width: 90%;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
             border-bottom: 2px solid black;
-            background-color: #f0f0f0;
+            background-color: white;
             position: fixed;
             top: 0;
             z-index: 10;
@@ -41,23 +42,25 @@
 
         .container {
             text-align: center;
-            margin-top: 70px; /* Platz für den Header */
+            margin-top: 50px; /* Platz für den Header */
             padding: 20px;
             width: 100%;
             flex-grow: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
+            font-size: smaller;
+              }
         .section {
             margin: 20px;
             padding: 20px;
-            border: 2px solid rgb(63, 189, 231);
+            border: 2px solid rgb(63, 186, 231);
             border-radius: 16px;
             background-color: white;
             max-width: 600px;
             width: 100%;
+        
+            margin-bottom: 50px;
         }
 
         .section p {
@@ -104,7 +107,7 @@
 
         .footer {
             width: 100%;
-            background-color: #e5e4e4; /* Hellgrau */
+            background-color: #efefef; /* Hellgrau */
             color: rgb(6, 6, 6);
             text-align: center;
             padding: 10px 0;
@@ -133,6 +136,10 @@
                 font-size: 1rem;
             }
 
+            body{
+                overflow-x: hidden;
+            }
+
             .section img {
                 width: 100px; /* Bildgröße für kleine Bildschirme */
                 margin-bottom: 15px;
@@ -147,6 +154,22 @@
                 margin-left: 23px;
             }
         }
+        .txt{
+            font-family: sans-serif;
+        }
+
+        .icon{
+             font-size: 10px;
+            text-align: center;
+            display: inline-block;
+            margin: 10px;
+            display: flex;
+            font-size: small;
+           
+        }
+
+
+
     </style>
 </head>
 <body>
@@ -159,7 +182,7 @@
         <div class="section">
             <img class="logo" src="Design ohne Titel.png" alt="Logo">
             <h2>Über uns</h2>
-            <p>
+            <p class="txt">
                 Wir sind ein engagiertes Team von Fachleuten, die sich darauf spezialisiert haben, die besten Lösungen für unsere Kunden zu finden.
                 Unser Ziel ist es, Brücken zwischen Influencern und Unternehmen zu bauen und langfristige Partnerschaften zu fördern.
             </p>
@@ -167,6 +190,7 @@
     </div>
     
     <div class="footer">
+        
         <div class="footertxt">2024 OSL. Alle Rechte vorbehalten</div>
         <a class="footera" href="#"> <u>Impressum</u> </a>
         <a class="footera" href="#"> <u>Datenschutz</u> </a>

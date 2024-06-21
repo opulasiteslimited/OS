@@ -142,6 +142,22 @@
             top: 25px;
         }
 
+           /* Overlay for dimming background */
+           .overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+            z-index: 1000; /* Below side menu but above other content */
+        }
+
+        .overlay.active {
+            display: block; /* Show overlay when active */
+        }
+
         .menu-line {
             width: 25px;
             height: 3px;
@@ -264,20 +280,23 @@
             position: fixed;
             top: 0;
             right: 0;
-            background-color: #252525; /* Dunkelblau */
+            background-color: white; /* Dunkelblau */
             overflow-x: hidden;
             transition: 0.5s;
-            padding-top: 60px;
+            padding-top: 80px;
             z-index: 10000;
         }
 
-        .side-menu a {
-            padding: 10px 15px;
+        .menuBtn {
+            padding: 10px 10px;
             text-decoration: none;
             margin-bottom: 16px;
             border: 1px solid #a9a7a7;
+            border-radius: 6px;
+            margin-right: 28px;
+            margin-left: 10px;
             font-size: 1rem;
-            color: white;
+            color: black;
             display: block;
             transition: 0.3s;
             font-family: sans-serif;
@@ -293,31 +312,45 @@
             right: 25px;
             font-size: 36px;
             margin-left: 50px;
-            color: white;
+            color: black;
             cursor: pointer;
         }
 
+      
 </style>
 
-
+<div class="overlay" id="overlay"></div> <!-- Overlay element -->
 
  <!-- Side-Menü -->
  <div id="sideMenu" class="side-menu">
+
+ 
+
     <span class="close-btn" id="closeBtn">&times;</span>
+    <a class="menuBtn" href="#" data-target="acc.html">Account</a>
     <a class="menuBtn" href="#" data-target="about.html">Über uns</a>
     <a class="menuBtn" href="#" data-target="services.html">Was wir machen</a>
     <a class="menuBtn" href="#" data-target="contact.html">Kontakt</a>
     <a class="menuBtn" href="#" data-target="index.html">Loslegen</a>
+
 </div>
         <script>
 
         document.getElementById('menu').addEventListener('click', function() {
             document.getElementById('sideMenu').style.width = '250px';
+            overlay.classList.toggle('active');
         });
 
-        document.getElementById('closeBtn').addEventListener('click', function() {
+        overlay.addEventListener('click', function() {
+                sideMenu.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+
+        closeBtn.addEventListener('click', function() {
             document.getElementById('sideMenu').style.width = '0';
-        });
+                overlay.classList.remove('active');
+            });
+
 
         // Event-Listener für die Links im Side-Menü
         document.querySelectorAll('.menuBtn').forEach(function(btn) {
@@ -334,7 +367,7 @@
                 // Navigiere zur Zielseite nach einer kurzen Verzögerung (hier 0.5 Sekunden)
                 setTimeout(function() {
                     window.location.href = target;
-                }, 400);
+                }, 300);
             });
          });
 

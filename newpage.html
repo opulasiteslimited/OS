@@ -17,12 +17,13 @@
             background-color: white;
             overflow: hidden;
             position: relative;
+            font-size: smaller;
         }
 
         h4 {
             margin-top: 20px;
             color: black;
-            font-size: 25px;
+            font-size: 23px;
             text-align: center;
         }
 
@@ -94,13 +95,14 @@
 
         .btn-weiter {
             margin-top: 45px;
-            padding: 10px;
+            padding: 8px 25px;
+            font-size: smaller;
             text-align: center;
             border-radius: 12px;
-            color: black;
-            border: 1.6px solid black;
+            color: white;
+            border: 1.6px solid rgb(64, 173, 210);
             font-size: larger;
-            background-color: rgb(88, 195, 231);
+            background-color: rgb(64, 173, 210);
             cursor: not-allowed;
             opacity: 0.5;
         }
@@ -233,10 +235,7 @@
                 gap: 5px;
             }
 
-            .btn {
-                padding-left: 4px;
-                padding-right: 4px;
-            }
+           
         }
     </style>
 </head>
@@ -255,7 +254,7 @@
         </div>
     </div>
 
-    <button id="btn-weiter" class="btn btn-weiter" disabled><strong>weiter</strong></button>
+    <button id="btn-weiter" class="btn btn-weiter" disabled><strong>Weiter</strong></button>
 
     <div id="circle" class="circle">
         <div class="loading-animation">
@@ -296,7 +295,7 @@
                 circle.style.display = 'block';
                 circle.style.animation = 'expandCircle 1s forwards';
                 circle.addEventListener('animationend', function() {
-                    window.location.href = 'influencer2.html';
+                    window.location.href = 'influencer2-1.html';
                 });
             }
         });
